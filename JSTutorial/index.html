@@ -6,10 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>JS Tutorial</title>
+  <style>
+    #expand:hover {
+      background-color: rgb(3, 41, 3);
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>JS Tutorial</h1>
+  <h1 id='expand' onclick="setDivValue()">JS Tutorial</h1>
+  <div id="demoContent"></div>
 
   <script>
     //var student;//="Hermela";
@@ -29,10 +37,55 @@
     // }
     console.log('I am writing');
     var students = ['Hermela', 'Eset', 'Niguse', 'Alefe', 'Mati', 'Fre'];
+    printStudents(students);
+    printStudents(students);
+    // for (var i in students) {
+    //   console.log('Student ' + i + ': ' + students[i]);
+    // }
 
-    for (var i in students) {
-      console.log('Student ' + i + ': ' + students[i]);
+    // function functionName(parameter){//parameter is optional
+    //   //block of statemtns
+    //   return returnValue; //Optional
+    // }
+
+    var student = {
+      firstName: 'Eset',
+      lastName: 'Mikru',
+      dob: '1/1/2000',
+      email: 'eset@gmail.com',
+      sayName: function () { return 'My name is ' + this.firstName + ' ' + this.lastName; }
     }
+
+    var dog1 = { name: 'dog 1', owner: 'Alem Gelagel' }
+    var dogs = [
+      { name: 'dog 1', owner: 'Alem Gelagel', age: 4 },
+      { name: 'dog 2', owner: 'Eset', age: 5 },
+      { name: 'dog 3', owner: 'Hermela', age: 2 }
+    ]
+
+    function printStudents(students) {
+      for (var i in students) {
+        console.log('Student ' + i + ': ' + students[i]);
+      }
+    }
+    function printDogs(dogs) {
+      for (var i in dogs) {
+        console.log('dog name ' + i + ': ' + dogs[i].name + ' dog owner: ' + dogs[i].owner);
+      }
+    }
+    counter = 0;
+    function setDivValue() {
+
+      var content = document.getElementById('demoContent').innerHTML;
+      if (content === '') {
+        document.getElementById('demoContent').innerHTML = '<h2>This is injected via JS</h2>';
+      }else{
+        document.getElementById('demoContent').innerHTML='';
+      }
+    }
+
+
+
 
   </script>
 </body>
