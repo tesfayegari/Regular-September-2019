@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div id="myLists">
+  
+</div>
+<script>
+  function getData(endPoint){
+    var webUrl = _spPageContextInfo.webAbsoluteUrl;
+
+    return $.ajax({
+      url: webUrl + endPoint,
+      method: "GET",
+      headers: { "Accept": "application/json; odata=verbose" }
+    });
+  }
+
+  $(document).ready(function(){
+    var url = '/_api/web/lists?$select=Title,ITemCount,Hidden&$filter=Hidden eq false';
+
+    getData(url).then(function(response){
+      console.log('Response Data', response);
+      var lists = response.d.results;
+      var myHtml = '';
+      for(var index in lists){
+        var list = lists[index];
+        myHtml += 
+        '<button type="button" class="btn btn-primary">' +
+        list.Title + '<span class="badge badge-light">' + list.ItemCount + '</span></button><br>';
+      }
+
+      $('#myLists').html(myHtml);
+    },function(error){console.error('Ooops Error',error);});
+  });
+</script>
