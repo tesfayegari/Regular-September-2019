@@ -20,3 +20,6 @@ YourSiteUrl/_api/web/lists/getbytitle('Expenses')
 
 - SharePoint Items 
 YourSiteUrl/_api/web/lists/getbytitle('Expenses')/items?$select=Title
+
+-Top N items Ex top 12 items
+YourSiteUrl/_api/web/lists/getbytitle('Expenses')/items?$top=12 

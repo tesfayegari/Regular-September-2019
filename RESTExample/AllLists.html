@@ -17,17 +17,17 @@
 
   $(document).ready(function(){
     var url = '/_api/web/lists?$select=Title,ITemCount,Hidden&$filter=Hidden eq false';
-
-    getData(url).then(function(response){
+    var countriesItems = "/_api/web/lists/getbytitle('Countries')/items";
+    getData(countriesItems).then(function(response){
       console.log('Response Data', response);
       var lists = response.d.results;
-      var myHtml = '';
+      var myHtml = '<div class="list-group">';
       for(var index in lists){
         var list = lists[index];
-        myHtml += 
-        '<button type="button" class="btn btn-primary">' +
-        list.Title + '<span class="badge badge-light">' + list.ItemCount + '</span></button><br>';
+        myHtml += '<a href="#" class="list-group-item list-group-item-action">'+ list.Title + ' ( ' + list.ItemCount + ' Items)</a>';
+       
       }
+      myHtml += '</div>';
 
       $('#myLists').html(myHtml);
     },function(error){console.error('Ooops Error',error);});

@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div id="myLists">
+
+</div>
+<script>
+  function getData(endPoint) {
+    var webUrl = _spPageContextInfo.webAbsoluteUrl;
+
+    return $.ajax({
+      url: webUrl + endPoint,
+      method: "GET",
+      headers: { "Accept": "application/json; odata=verbose" }
+    });
+  }
+
+  $(document).ready(function () {
+    var url = "/_api/web/lists/getbytitle('Employees')/items?$top=12";
+
+    getData(url).then(function (response) {
+      console.log('Response Data', response);
+      var items = response.d.results;
+      var myHtml = '<div class="row">';
+      for (var index in items) {
+        var item = items[index];
+        myHtml += `
+        <div class="card col-sm-6 col-md-4 col-lg-3">
+          <img src="${item.PictureUrl}" class="card-img-top" alt="${item.Title}">
+          <div class="card-body">
+            <h5 class="card-title">${item.Title}</h5>
+            <p class="card-text">${item.ShortDescription}</p>
+            <a href="https://tgari2018.sharepoint.com/sites/testdemo1/Lists/Employees/DispForm.aspx?ID=${item.Id}" class="btn btn-primary">View Profile</a>
+          </div>
+        </div>`;
+
+      }
+      myHtml += '</div>';
+
+      $('#myLists').html(myHtml);
+    }, function (error) { console.error('Ooops Error', error); });
+  });
+</script>
