@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "view-all-lists-client-side-solution",
+    "id": "530f1830-8745-4385-87a2-eb6a4eaa96a7",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/view-all-lists.sppkg"
+  }
+}
